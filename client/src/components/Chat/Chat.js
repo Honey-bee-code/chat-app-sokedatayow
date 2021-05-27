@@ -14,7 +14,7 @@ const Chat = ({ location }) => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
 
-    const ENDPOINT = "localhost:8080";
+    const ENDPOINT = "localhost:5000";
     socket = io(ENDPOINT);
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
@@ -34,8 +34,9 @@ const Chat = ({ location }) => {
     }, [ENDPOINT, location.search]);
 
     useEffect(() => {
-        socket.on("message", (message) => {
-            setMessages([...messages, message]);
+        socket.on("message", (msg) => {
+            setMessages([...messages, msg]);
+            messages.push(msg);
         });
     }, [messages]);
 
@@ -48,7 +49,7 @@ const Chat = ({ location }) => {
         }
     };
 
-    console.log(message, messages);
+    console.log(messages);
 
     return (
         <div className="outerContainer">

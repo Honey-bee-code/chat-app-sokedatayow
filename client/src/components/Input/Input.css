@@ -18,7 +18,7 @@ select:focus {
 }
 
 .sendButton {
-    color: #ffffff;
+    color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
     background: #2979ff;
