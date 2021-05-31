@@ -17,16 +17,16 @@ const Chat = ({ location }) => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
 
-    // const connectionOptions = {
-    //     "force new connection": true,
-    //     reconnectionAttempts: "Infinity",
-    //     timeout: 10000,
-    //     transports: ["websocket", "polling", "flashsocket"],
-    // };
-    const ENDPOINT = "https://joinroomchat.herokuapp.com/";
-    // const ENDPOINT = "http://localhost:5000";
+    const connectionOptions = {
+        "force new connection": true,
+        reconnectionAttempts: "Infinity",
+        timeout: 10000,
+        transports: ["websocket", "polling", "flashsocket"],
+    };
+    // const ENDPOINT = "https://joinroomchat.herokuapp.com/";
+    const ENDPOINT = "http://localhost:5000";
 
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, connectionOptions);
 
     useEffect(() => {
         let { name, room } = queryString.parse(location.search);
